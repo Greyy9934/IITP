@@ -1,0 +1,60 @@
+SYSTEM mysystem;
+PROCESS pid1;
+
+PROCESSDEF pid1
+START
+
+BLOCK myblock1
+START
+    int i=0; 
+    int a[5];
+    int max = -1, secondmax = -1;
+    a[0]=111; a[1]=12; a[2]=23; a[3]=34; a[4]=45;
+END
+
+DECISION mydec1
+IF i < 5
+THEN
+    GOTO mydec2
+ELSE
+    GOTO myblock8
+
+DECISION mydec2
+IF a[i] > max
+THEN
+    GOTO myblock4
+ELSE
+    GOTO mydec3
+
+BLOCK myblock4
+START
+    secondmax = max; 
+    max = a[i]; 
+    GOTO myblock5;
+END
+
+DECISION mydec3
+IF a[i] > secondmax
+THEN
+    GOTO myblock7
+ELSE
+    GOTO myblock5
+
+BLOCK myblock5
+START
+    i++;
+    GOTO mydec1;
+END
+
+BLOCK myblock7
+START
+    secondmax = a[i]; 
+    GOTO myblock5;
+END
+
+BLOCK myblock8
+START
+    printf("max = %d, secmax = %d\n", max, secondmax);
+END
+
+END

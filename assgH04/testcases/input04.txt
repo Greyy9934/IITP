@@ -1,0 +1,31 @@
+SYSTEM sys4;
+PROCESS p4;
+
+PROCESSDEF p4
+START
+
+BLOCK b_init
+START
+    int sum = 0, i = 1;
+END
+
+DECISION d_loop
+IF i <= 10
+THEN
+    GOTO b_add
+ELSE
+    GOTO b_done
+
+BLOCK b_add
+START
+    sum = sum + i;
+    i++;
+    GOTO d_loop;
+END
+
+BLOCK b_done
+START
+    printf("Sum = %d\n", sum);
+END
+
+END

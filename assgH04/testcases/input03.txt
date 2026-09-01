@@ -1,0 +1,31 @@
+SYSTEM sys3;
+PROCESS p3;
+
+PROCESSDEF p3
+START
+
+BLOCK b1
+START
+    int n = 5, fact = 1;
+END
+
+DECISION d_check
+IF n > 1
+THEN
+    GOTO b_mult
+ELSE
+    GOTO b_print
+
+BLOCK b_mult
+START
+    fact = fact * n;
+    n--;
+    GOTO d_check;
+END
+
+BLOCK b_print
+START
+    printf("Factorial = %d\n", fact);
+END
+
+END

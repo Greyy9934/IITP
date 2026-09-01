@@ -1,0 +1,39 @@
+SYSTEM sys2;
+PROCESS p2;
+
+PROCESSDEF p2
+START
+
+BLOCK b1
+START
+    int x = 45, y = 99;
+    int ans;
+END
+
+DECISION d1
+IF x > y
+THEN
+    GOTO b2
+ELSE
+    GOTO b3
+
+BLOCK b2
+START
+    ans = x;
+    GOTO b4;
+END
+
+BLOCK b3
+START
+    ans = y;
+END
+
+UNCONDDEC u1
+GOTO b4
+
+BLOCK b4
+START
+    printf("Max of %d and %d is %d\n", x, y, ans);
+END
+
+END

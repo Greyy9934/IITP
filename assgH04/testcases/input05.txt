@@ -1,0 +1,37 @@
+SYSTEM sys5;
+PROCESS p5;
+
+PROCESSDEF p5
+START
+
+BLOCK b_start
+START
+    int val = 28;
+END
+
+DECISION d_even
+IF val % 2 == 0
+THEN
+    GOTO b_even
+ELSE
+    GOTO b_odd
+
+BLOCK b_even
+START
+    printf("%d is Even\n", val);
+    GOTO b_end;
+END
+
+BLOCK b_odd
+START
+    printf("%d is Odd\n", val);
+END
+
+UNCONDDEC u_end
+GOTO b_end
+
+BLOCK b_end
+START
+END
+
+END
